@@ -15,17 +15,31 @@
             <div class="sidebar-item" onclick="logout()">Logout</div>
         </aside>
 
-        <main style="padding: 3rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3rem;">
-                <h2 id="welcome-msg">Console</h2>
-                <div class="status-badge"><div class="status-pulse"></div> AI Monitoring Active</div>
-            </div>
+        <main style="padding: 2rem;">
+    <div class="stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px;">
+        <div class="card">
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Current Security Score</p>
+            <h2 class="accent-text">85/100</h2>
+        </div>
+        <div class="card">
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Active Shields</p>
+            <h2>3 Active</h2>
+        </div>
+        <div class="card">
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Monitoring Status</p>
+            <p style="color: #00ff88;">● Live</p>
+        </div>
+    </div>
 
-            <div class="card" style="margin-bottom: 2rem;">
-                <h3>Active Subscriptions</h3>
-                <div id="order-list" style="margin-top: 1rem;">Syncing security ledger...</div>
+    <div class="card">
+        <h3>Threat Activity Timeline</h3>
+        <div id="activity-log" style="margin-top: 20px;">
+            <div style="padding: 10px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem;">
+                <span style="color: var(--primary);">[09:41 AM]</span> AI scanned Instagram API - 0 threats found.
             </div>
-        </main>
+        </div>
+    </div>
+</main>
     </div>
     <script src="app.js"></script>
 </body>

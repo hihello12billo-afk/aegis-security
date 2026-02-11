@@ -137,7 +137,7 @@ app.get('/api/admin/orders', async (req, res) => {
 });
 
 // Important: Serve static files correctly
-app.get('*', (req, res) => {
+app.all('{0,}', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
