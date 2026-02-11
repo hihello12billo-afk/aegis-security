@@ -2,68 +2,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login | Aegis Security</title>
+    <title>Access Console | Aegis</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-    <div id="particles-js"></div>
-    
-    <div class="hero">
-        <div class="card" style="width: 100%; max-width: 400px;">
-            <h2 id="form-title" style="text-align: center; margin-bottom: 1rem;">Client Portal Login</h2>
-            
-            <form id="auth-form">
-                <div class="form-group" id="username-group" style="display: none;">
-                    <label>Username</label>
-                    <input type="text" id="username">
+<body class="flex-center" style="min-height: 100vh; background: var(--bg-dark);">
+
+    <div class="card" style="width: 100%; max-width: 400px; padding: 3rem; text-align: center;">
+        <a href="index.html" style="text-decoration:none; color:inherit; display:block; margin-bottom:2rem;">
+            <div class="logo">AEGIS<span class="accent-text">.AI</span></div>
+        </a>
+        
+        <div id="auth-container">
+            <h2 id="auth-title">Identify Agent</h2>
+            <p id="auth-subtitle" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Enter your credentials to access the console.</p>
+
+            <form id="auth-form" onsubmit="handleAuth(event)">
+                <div id="input-fields">
+                    <input type="email" id="email" placeholder="Email Address" required 
+                        style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px; margin-bottom: 1rem;">
+                    
+                    <input type="password" id="password" placeholder="Password" required 
+                        minlength="8" maxlength="32"
+                        style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px; margin-bottom: 0.5rem;">
                 </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="email" required>
+
+                <div id="password-checklist" style="text-align: left; margin-bottom: 1.5rem; display: none; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px;">
+                    <p id="req-length" style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 4px; transition: 0.3s;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; margin-right: 8px;"></i> 8+ Characters
+                    </p>
+                    <p id="req-upper" style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 4px; transition: 0.3s;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; margin-right: 8px;"></i> 1 Uppercase Letter
+                    </p>
+                    <p id="req-number" style="color: var(--text-muted); font-size: 0.75rem; transition: 0.3s;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; margin-right: 8px;"></i> 1 Number
+                    </p>
                 </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="cta-btn primary" style="width: 100%;">Login</button>
+                
+                <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; justify-content: center;">Authorize Access</button>
             </form>
-            
-            <p style="text-align: center; margin-top: 1rem; color: var(--text-muted);">
-                <span id="toggle-text">New Client?</span> 
-                <a href="#" id="toggle-auth" style="color: var(--accent);">Create Account</a>
+
+            <p style="margin-top: 2rem; font-size: 0.8rem; color: var(--text-muted);">
+                <span id="toggle-text">New operative?</span> 
+                <a href="#" onclick="toggleAuthMode()" id="toggle-link" style="color: var(--primary); text-decoration: none;">Create Account</a>
             </p>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="app.js"></script>
     <script>
-        particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json');
-        
-        const form = document.getElementById('auth-form');
-        const toggleBtn = document.getElementById('toggle-auth');
-        let isLogin = true;
+        let isLoginMode = true;
 
-        toggleBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            isLogin = !isLogin;
-            document.getElementById('form-title').innerText = isLogin ? 'Client Portal Login' : 'Create Secure Account';
-            document.getElementById('username-group').style.display = isLogin ? 'none' : 'block';
-            document.querySelector('button').innerText = isLogin ? 'Login' : 'Register';
-        });
+        // --- Live Typing Listener ---
+        function attachPasswordListener() {
+            const passwordInput = document.getElementById('password');
+            passwordInput.addEventListener('input', function() {
+                const val = this.value;
+                
+                // Check 1: Length
+                updateUI('req-length', val.length >= 8);
+                // Check 2: Uppercase
+                updateUI('req-upper', /[A-Z]/.test(val));
+                // Check 3: Number
+                updateUI('req-number', /\d/.test(val));
+            });
+        }
 
-        form.addEventListener('submit', (e) => {
+        function updateUI(id, isValid) {
+            const el = document.getElementById(id);
+            const icon = el.querySelector('i');
+            if (isValid) {
+                el.style.color = "var(--primary)";
+                icon.className = "fas fa-check-circle";
+            } else {
+                el.style.color = "var(--text-muted)";
+                icon.className = "fas fa-circle";
+            }
+        }
+
+        function toggleAuthMode() {
+            isLoginMode = !isLoginMode;
+            const title = document.getElementById('auth-title');
+            const subtitle = document.getElementById('auth-subtitle');
+            const inputFields = document.getElementById('input-fields');
+            const submitBtn = document.getElementById('submit-btn');
+            const toggleLink = document.getElementById('toggle-link');
+            const toggleText = document.getElementById('toggle-text');
+            const checklist = document.getElementById('password-checklist');
+
+            if (!isLoginMode) {
+                title.innerText = "Register Operative";
+                subtitle.innerText = "Create your secure profile.";
+                submitBtn.innerText = "Deploy Profile";
+                toggleText.innerText = "Already an agent?";
+                toggleLink.innerText = "Login here";
+                checklist.style.display = "block";
+                
+                // Start listening to password typing
+                attachPasswordListener();
+
+                const userField = document.createElement('input');
+                userField.id = "username";
+                userField.placeholder = "Agent Name (Max 20)";
+                userField.required = true;
+                userField.maxLength = 20;
+                userField.style = "width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px; margin-bottom: 1rem;";
+                inputFields.prepend(userField);
+            } else {
+                location.reload();
+            }
+        }
+
+        function validatePassword(pass) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            return regex.test(pass);
+        }
+
+        async function handleAuth(e) {
             e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            
-            if(isLogin) {
-                login(email, password);
-            } else {
+
+            if (!isLoginMode) {
                 const username = document.getElementById('username').value;
-                register(username, email, password);
+                if (!validatePassword(password)) {
+                    alert("SECURITY ALERT: Password parameters not met.");
+                    return;
+                }
+                await register(username, email, password);
+            } else {
+                await login(email, password);
             }
-        });
+        }
     </script>
 </body>
 </html>

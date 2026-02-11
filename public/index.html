@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aegis | Elite Protection</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
+
     <nav>
         <div class="container nav-inner">
             <a href="index.html" style="text-decoration:none; color:inherit;">
@@ -14,28 +18,104 @@
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Overview</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="#features">Security</a></li>
+                <li><a href="#pricing">Pricing</a></li>
             </ul>
-            <a href="login.html" class="btn btn-glow" style="padding: 0.5rem 1.2rem;">Client Login</a>
+            <div style="display: flex; gap: 1.5rem; align-items: center;">
+                <div id="cart-status" style="color: var(--text-muted); font-size: 0.9rem;">
+                    <i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span>
+                </div>
+                <a href="login.html" id="login-link" class="btn btn-glow" style="padding: 0.5rem 1.2rem;">Client Login</a>
+            </div>
         </div>
     </nav>
 
-    <header class="flex-center" style="min-height: 100vh; text-align: center; flex-direction: column;">
+    <header class="flex-center" style="min-height: 100vh; text-align: center; flex-direction: column; padding-top: 80px;">
         <div class="status-badge" style="margin-bottom: 2rem;">
-            <div class="status-pulse"></div> Network Active
+            <div class="status-pulse"></div> Network Operational
         </div>
         <h1 class="gradient-text">Next-Gen Account<br>Security Shield</h1>
-        <p style="color:var(--text-muted); margin: 2rem 0; max-width: 600px;">Neural monitoring for high-value digital assets. Deploy AI-driven defense in seconds.</p>
+        <p style="color:var(--text-muted); margin: 2rem 0; max-width: 600px; font-size: 1.1rem;">
+            Neural monitoring for high-value digital assets. Deploy AI-driven defense protocols in seconds.
+        </p>
         <div class="flex-center" style="gap: 1.5rem;">
-            <a href="pricing.html" class="btn btn-primary">Get Protected</a>
-            <a href="about.html" class="btn btn-glow">Whitepaper</a>
+            <a href="#pricing" class="btn btn-primary">Deploy Now</a>
+            <a href="#features" class="btn btn-glow">View Specs</a>
         </div>
     </header>
 
+    <section id="features" class="container" style="padding: 100px 0;">
+        <h2 style="text-align: center; margin-bottom: 4rem;">Technical <span class="accent-text">Infrastructure</span></h2>
+        <div class="grid-3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="card">
+                <i class="fas fa-brain accent-text" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                <h3>Neural Detection</h3>
+                <p style="color: var(--text-muted);">Predictive AI that identifies breach attempts before they occur by analyzing behavioral biometrics.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-vault accent-text" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                <h3>Cold-Storage Identity</h3>
+                <p style="color: var(--text-muted);">Your identity keys are encrypted and stored in offline hardware modules for maximum immunity.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-gavel accent-text" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                <h3>Rapid Takedown</h3>
+                <p style="color: var(--text-muted);">Automated DMCA and legal takedown requests sent instantly via our direct platform API links.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="container" style="padding: 100px 0; border-top: 1px solid var(--border);">
+        <h2 style="text-align: center; margin-bottom: 4rem;">Mission <span class="accent-text">Parameters</span></h2>
+        <div class="grid-3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            
+            <div class="card">
+                <h3>Standard</h3>
+                <p class="accent-text" style="font-size: 2.5rem; margin: 1rem 0;">$199<span style="font-size: 1rem; color: var(--text-muted);">/mo</span></p>
+                <ul style="list-style: none; color: var(--text-muted); margin-bottom: 2rem; line-height: 2.2;">
+                    <li><i class="fas fa-check accent-text"></i> Basic Surveillance</li>
+                    <li><i class="fas fa-check accent-text"></i> Email Alerts</li>
+                </ul>
+                <button onclick="addToCart('price_1SzgfhISGGHqTVJmYdn9WVLI', 199)" class="btn btn-glow" style="width: 100%;">Add to Queue</button>
+            </div>
+
+            <div class="card" style="border-color: var(--primary); transform: scale(1.05); z-index: 2;">
+                <div style="background: var(--primary); color: #000; font-size: 0.7rem; font-weight: 800; padding: 4px 10px; position: absolute; top: 0; right: 0; border-radius: 0 0 0 10px;">POPULAR</div>
+                <h3>Pro Defense</h3>
+                <p class="accent-text" style="font-size: 2.5rem; margin: 1rem 0;">$499<span style="font-size: 1rem; color: var(--text-muted);">/mo</span></p>
+                <ul style="list-style: none; color: var(--text-muted); margin-bottom: 2rem; line-height: 2.2;">
+                    <li><i class="fas fa-check accent-text"></i> Full Neural Analysis</li>
+                    <li><i class="fas fa-check accent-text"></i> Priority Takedowns</li>
+                    <li><i class="fas fa-check accent-text"></i> 24/7 Phone Support</li>
+                </ul>
+                <button onclick="addToCart('price_1SzggBISGGHqTVJmtkWsJwXe', 499)" class="btn btn-primary" style="width: 100%;">Add to Queue</button>
+            </div>
+
+            <div class="card">
+                <h3>Elite Protocol</h3>
+                <p class="accent-text" style="font-size: 2.5rem; margin: 1rem 0;">$999<span style="font-size: 1rem; color: var(--text-muted);">/mo</span></p>
+                <ul style="list-style: none; color: var(--text-muted); margin-bottom: 2rem; line-height: 2.2;">
+                    <li><i class="fas fa-check accent-text"></i> Concierge Security</li>
+                    <li><i class="fas fa-check accent-text"></i> Legal Defense Fund</li>
+                </ul>
+                <button onclick="addToCart('price_1SzggNISGGHqTVJmhbfRlsXT', 999)" class="btn btn-glow" style="width: 100%;">Add to Queue</button>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 5rem;">
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Ready to deploy your security layer?</p>
+            <button onclick="checkout()" class="btn btn-primary" style="padding: 1.5rem 4rem; font-size: 1.2rem; box-shadow: 0 0 50px rgba(255,255,255,0.1);">Initialize Deployment</button>
+        </div>
+    </section>
+
+    <footer style="padding: 5rem 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted);">
+        <p>&copy; 2026 Aegis AI Security. Built for the high-end digital era.</p>
+    </footer>
+
     <script src="app.js"></script>
     <script>
-        gsap.from("h1, p, .btn", { y: 30, opacity: 0, duration: 1, stagger: 0.2 });
+        gsap.from("h1, p, header .btn", { y: 30, opacity: 0, duration: 1, stagger: 0.2, ease: "power4.out" });
     </script>
 </body>
 </html>

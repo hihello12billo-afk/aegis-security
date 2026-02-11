@@ -32,7 +32,8 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; 
 h1 { font-size: clamp(3rem, 5vw, 5rem); line-height: 1.1; font-weight: 700; }
 .gradient-text {
     background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
-    -webkit-background-clip: text;
+    -webkit-background-clip: text; /* For Safari/Chrome */
+    background-clip: text;         /* The standard property VS Code is asking for */
     -webkit-text-fill-color: transparent;
 }
 .accent-text { color: var(--primary); text-shadow: var(--glow); }
