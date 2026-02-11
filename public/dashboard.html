@@ -2,69 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Console | Aegis</title>
+    <title>Dashboard | Aegis</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="dashboard-layout">
         <aside class="sidebar">
-            <div class="logo" style="margin-bottom: 2rem;">AEGIS<span class="accent-text">.AI</span></div>
-            <nav>
-                <div class="sidebar-item active"><i class="fas fa-home"></i> Overview</div>
-                <div class="sidebar-item"><i class="fas fa-shield-alt"></i> Protection</div>
-                <div class="sidebar-item"><i class="fas fa-credit-card"></i> Billing</div>
-                <div class="sidebar-item" style="margin-top: auto;" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</div>
-            </nav>
+            <a href="index.html" style="text-decoration:none; color:inherit; display:block; margin-bottom:3rem;">
+                <div class="logo">AEGIS<span class="accent-text">.AI</span></div>
+            </a>
+            <div class="sidebar-item active">Overview</div>
+            <div class="sidebar-item" onclick="logout()">Logout</div>
         </aside>
 
-        <main style="padding: 2rem;">
-            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <div>
-                    <h2 id="welcome-msg">Dashboard</h2>
-                    <p style="color: var(--text-muted);">Overview of your security posture.</p>
-                </div>
-                <div class="status-badge">
-                    <div class="status-pulse"></div> Protected
-                </div>
-            </header>
-
-            <div class="stat-grid">
-                <div class="card">
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Threat Score</p>
-                    <h2 style="color: #00ff88; margin: 0;">Low</h2>
-                </div>
-                <div class="card">
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Accounts Monitored</p>
-                    <h2 style="color: #fff; margin: 0;">0</h2>
-                </div>
-                <div class="card">
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Next Scan</p>
-                    <h2 style="color: var(--primary); margin: 0;">24m</h2>
-                </div>
+        <main style="padding: 3rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3rem;">
+                <h2 id="welcome-msg">Console</h2>
+                <div class="status-badge"><div class="status-pulse"></div> AI Monitoring Active</div>
             </div>
 
-            <div class="card">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem;">
-                    <h3>Recent Activity</h3>
-                    <button class="btn btn-glow" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Export Log</button>
-                </div>
-                <div id="order-list">
-                    <div style="padding: 2rem; text-align: center; color: var(--text-muted);">
-                        <i class="fas fa-circle-notch fa-spin"></i> Syncing blockchain ledger...
-                    </div>
-                </div>
+            <div class="card" style="margin-bottom: 2rem;">
+                <h3>Active Subscriptions</h3>
+                <div id="order-list" style="margin-top: 1rem;">Syncing security ledger...</div>
             </div>
         </main>
     </div>
-
     <script src="app.js"></script>
-    <script>
-        // Set Username
-        document.getElementById('welcome-msg').innerText = `Welcome, ${localStorage.getItem('username') || 'Agent'}`;
-        
-        // Fetch Data
-        fetchOrders(); // Function from app.js
-    </script>
 </body>
 </html>

@@ -2,113 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aegis | Elite Digital Security</title>
+    <title>Aegis | Elite Protection</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
 </head>
 <body>
-
-<div id="preloader" style="position: fixed; inset: 0; background: #030305; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.8s ease;">
-    <div class="logo" style="font-size: 2rem; animation: pulse 1.5s infinite;">AEGIS<span class="accent-text">.AI</span></div>
-</div>
-
     <nav>
         <div class="container nav-inner">
-            <div class="logo">AEGIS<span class="accent-text">.AI</span></div>
+            <a href="index.html" style="text-decoration:none; color:inherit;">
+                <div class="logo">AEGIS<span class="accent-text">.AI</span></div>
+            </a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Overview</a></li>
+                <li><a href="index.html">Overview</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
             </ul>
-            <div style="display: flex; gap: 1rem;">
-                <a href="login.html" class="btn btn-glow" style="padding: 0.6rem 1.2rem;">Log In</a>
-                <a href="pricing.html" class="btn btn-primary" style="padding: 0.6rem 1.2rem;">Start Free</a>
-            </div>
+            <a href="login.html" class="btn btn-glow" style="padding: 0.5rem 1.2rem;">Client Login</a>
         </div>
     </nav>
 
-    <main>
-        <section class="hero">
-            <div class="bg-gradient"></div>
-            <div class="container">
-                <div class="status-badge mb-4">
-                    <div class="status-pulse"></div> System Operational · v2.4 Live
-                </div>
-                <h1 class="reveal-text">Security for the <br><span class="gradient-text">Next Generation</span></h1>
-                <p style="max-width: 600px; margin: 1.5rem auto; color: var(--text-muted); font-size: 1.2rem;">
-                    Enterprise-grade social media protection powered by neural networks. 
-                    Detect threats before they happen.
-                </p>
-                <div class="flex-center" style="gap: 1rem; margin-top: 2rem;">
-                    <a href="pricing.html" class="btn btn-primary">Deploy Protection</a>
-                    <a href="#demo" class="btn btn-glow"><i class="fas fa-play"></i> Live Demo</a>
-                </div>
-                
-                <div class="flex-center" style="gap: 3rem; margin-top: 4rem; opacity: 0.6;">
-                    <div><h3 class="accent-text">99.9%</h3><p style="font-size: 0.8rem;">Uptime</p></div>
-                    <div><h3 class="accent-text">$500M+</h3><p style="font-size: 0.8rem;">Assets Secured</p></div>
-                    <div><h3 class="accent-text">24/7</h3><p style="font-size: 0.8rem;">AI Monitoring</p></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="container" id="features">
-            <div class="grid-3">
-                <div class="card" data-tilt>
-                    <i class="fas fa-shield-virus accent-text" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                    <h3>Neural Threat Detection</h3>
-                    <p>Our AI analyzes login patterns in real-time, blocking suspicious access attempts instantly.</p>
-                </div>
-                <div class="card" data-tilt>
-                    <i class="fas fa-fingerprint accent-text" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                    <h3>Biometric Recovery</h3>
-                    <p>Lost access? Reclaim your account in seconds using our proprietary identity verification flow.</p>
-                </div>
-                <div class="card" data-tilt>
-                    <i class="fas fa-globe accent-text" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                    <h3>Global Legal Network</h3>
-                    <p>Direct API integration with platform legal teams for rapid DMCA takedowns.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="container" style="padding: 6rem 0; text-align: center;">
-            <div class="card" style="max-width: 900px; margin: 0 auto; height: 400px; display: flex; align-items: center; justify-content: center; background: #000;">
-                <h3 style="position: absolute; top: 20px; left: 20px; font-size: 1rem; color: var(--text-muted);">LIVE THREAT MAP</h3>
-                <div style="width: 100px; height: 100px; border: 2px solid var(--primary); border-radius: 50%; animation: pulse 2s infinite;"></div>
-                <p style="margin-top: 140px; color: var(--primary);">Scanning Global Nodes...</p>
-            </div>
-        </section>
-    </main>
-
-    <footer style="border-top: 1px solid var(--border); padding: 3rem 0; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
-        <p>&copy; 2026 Aegis Security Inc. <span style="margin: 0 10px;">|</span> Status: <span style="color: #00ff88;">All Systems Normal</span></p>
-    </footer>
+    <header class="flex-center" style="min-height: 100vh; text-align: center; flex-direction: column;">
+        <div class="status-badge" style="margin-bottom: 2rem;">
+            <div class="status-pulse"></div> Network Active
+        </div>
+        <h1 class="gradient-text">Next-Gen Account<br>Security Shield</h1>
+        <p style="color:var(--text-muted); margin: 2rem 0; max-width: 600px;">Neural monitoring for high-value digital assets. Deploy AI-driven defense in seconds.</p>
+        <div class="flex-center" style="gap: 1.5rem;">
+            <a href="pricing.html" class="btn btn-primary">Get Protected</a>
+            <a href="about.html" class="btn btn-glow">Whitepaper</a>
+        </div>
+    </header>
 
     <script src="app.js"></script>
     <script>
-        // Init Smooth Scroll
-        const lenis = new Lenis();
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.from(".hero h1, .hero p, .hero .btn", {
-            y: 50, opacity: 0, duration: 1, stagger: 0.2, ease: "power4.out"
-        });
-
-        gsap.utils.toArray('.card').forEach(card => {
-            gsap.from(card, {
-                scrollTrigger: { trigger: card, start: "top 85%" },
-                y: 50, opacity: 0, duration: 0.8, ease: "power2.out"
-            });
-        });
+        gsap.from("h1, p, .btn", { y: 30, opacity: 0, duration: 1, stagger: 0.2 });
     </script>
 </body>
 </html>
