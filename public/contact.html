@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Aegis Security</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+        }
+        .faq-question {
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            color: var(--text-muted);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+        }
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-fx"></div>
+
+    <nav>
+        <div class="logo">AEGIS<span class="highlight">.SEC</span></div>
+        <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="container">
+        <h1>Get In <span class="highlight">Touch</span></h1>
+        <p style="margin-bottom: 3rem; color: var(--text-muted);">Facing a security breach? Contact us immediately.</p>
+
+        <div class="contact-grid">
+            <div class="card">
+                <form>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Service Required</label>
+                        <select>
+                            <option>Account Recovery (Urgent)</option>
+                            <option>Security Audit</option>
+                            <option>Monthly Protection Plan</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="5" placeholder="Describe your issue..."></textarea>
+                    </div>
+                    <button type="button" class="cta-btn primary" style="width: 100%;">Send Securely</button>
+                </form>
+            </div>
+
+            <div>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h3>Direct Lines</h3>
+                    <p style="margin-bottom: 1rem;"><i class="fas fa-envelope"></i> help@aegis-sec.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +1 (555) 019-2834</p>
+                </div>
+
+                <h3>FAQ</h3>
+                <div class="faq-item">
+                    <div class="faq-question">How fast is recovery? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Most cases are resolved within 24-48 hours depending on the platform's responsiveness.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you need my password? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">For audits, no. For recovery, we may require temporary access via secure encrypted channels.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is it guaranteed? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">We have a 96% success rate. If we cannot recover your account, you are fully refunded.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Aegis Security Agency. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

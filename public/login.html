@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Aegis Security</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="hero">
+        <div class="card" style="width: 100%; max-width: 400px;">
+            <h2 id="form-title" style="text-align: center; margin-bottom: 1rem;">Client Portal Login</h2>
+            
+            <form id="auth-form">
+                <div class="form-group" id="username-group" style="display: none;">
+                    <label>Username</label>
+                    <input type="text" id="username">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="cta-btn primary" style="width: 100%;">Login</button>
+            </form>
+            
+            <p style="text-align: center; margin-top: 1rem; color: var(--text-muted);">
+                <span id="toggle-text">New Client?</span> 
+                <a href="#" id="toggle-auth" style="color: var(--accent);">Create Account</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json');
+        
+        const form = document.getElementById('auth-form');
+        const toggleBtn = document.getElementById('toggle-auth');
+        let isLogin = true;
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            isLogin = !isLogin;
+            document.getElementById('form-title').innerText = isLogin ? 'Client Portal Login' : 'Create Secure Account';
+            document.getElementById('username-group').style.display = isLogin ? 'none' : 'block';
+            document.querySelector('button').innerText = isLogin ? 'Login' : 'Register';
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if(isLogin) {
+                login(email, password);
+            } else {
+                const username = document.getElementById('username').value;
+                register(username, email, password);
+            }
+        });
+    </script>
+</body>
+</html>

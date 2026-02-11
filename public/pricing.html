@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | Aegis Security</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="background-fx"></div>
+
+    <nav>
+        <div class="logo">AEGIS<span class="highlight">.SEC</span></div>
+        <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html" class="active">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="cta-btn">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="container" style="text-align: center;">
+        <h1>Select Your <span class="highlight">Shield</span></h1>
+        <p style="color: var(--text-muted); margin-bottom: 3rem;">Transparent pricing for professional grade security.</p>
+
+        <div class="grid-3">
+            <div class="card pricing-card">
+                <h3>Basic</h3>
+                <div class="price">$199<span>/mo</span></div>
+                <p>Essential protection for emerging creators.</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> 2FA Setup</li>
+                    <li><i class="fas fa-check"></i> Monthly Security Audit</li>
+                    <li><i class="fas fa-check"></i> Email Support</li>
+                    <li style="opacity: 0.3;"><i class="fas fa-times"></i> Legal Recovery Support</li>
+                    <li style="opacity: 0.3;"><i class="fas fa-times"></i> 24/7 Monitoring</li>
+                </ul>
+                <button onclick="addToCart('Basic Plan', 199)" class="cta-btn" style="width:100%">Add to Cart</button>
+            </div>
+
+            <div class="card pricing-card featured">
+                <div class="badge">RECOMMENDED</div>
+                <h3>Pro</h3>
+                <div class="price">$499<span>/mo</span></div>
+                <p>Full spectrum defense for established brands.</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Everything in Basic</li>
+                    <li><i class="fas fa-check"></i> 24/7 Active Monitoring</li>
+                    <li><i class="fas fa-check"></i> Priority Recovery Assistance</li>
+                    <li><i class="fas fa-check"></i> Impersonation Takedowns (5/mo)</li>
+                    <li><i class="fas fa-check"></i> WhatsApp Support Line</li>
+                </ul>
+                <button onclick="addToCart('Pro Plan', 499)" class="cta-btn primary" style="width:100%">Add to Cart</button>
+            </div>
+
+            <div class="card pricing-card">
+                <h3>Elite</h3>
+                <div class="price">$999<span>/mo</span></div>
+                <p>Dedicated security team for public figures.</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Everything in Pro</li>
+                    <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
+                    <li><i class="fas fa-check"></i> Unlimited Legal Recovery</li>
+                    <li><i class="fas fa-check"></i> Device Forensics</li>
+                    <li><i class="fas fa-check"></i> Crisis Management PR</li>
+                </ul>
+                <button onclick="addToCart('Elite Plan', 999)" class="cta-btn" style="width:100%">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Aegis Security Agency. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="app.js"></script>
+    
+    <div class="cart-float" onclick="window.location.href='dashboard.html'">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cart-count">0</span>
+    </div>
+</body>
+</html>
