@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Command | Aegis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="logo" style="color: var(--accent);">AEGIS<span style="color: white;">.ADMIN</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Live Site</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-grid">
+        <aside class="sidebar">
+            <h3>Control Panel</h3>
+            <ul>
+                <li class="active" onclick="showSection('orders')">Live Orders</li>
+                <li onclick="showSection('users')">User Database</li>
+                <li onclick="showSection('analytics')">Revenue Analytics</li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1>Mission Control</h1>
+            
+            <div class="grid-3" style="margin-top: 1rem; margin-bottom: 2rem;">
+                <div class="card" style="border-color: var(--accent);">
+                    <h3>Total Revenue</h3>
+                    <p class="highlight" style="font-size: 2rem;" id="total-revenue">$0.00</p>
+                </div>
+                <div class="card">
+                    <h3>Active Orders</h3>
+                    <p style="font-size: 2rem;" id="total-orders">0</p>
+                </div>
+                <div class="card">
+                    <h3>Server Status</h3>
+                    <p style="color: #00ff88; font-size: 1.2rem;">● Online</p>
+                </div>
+            </div>
+
+            <div id="orders-section">
+                <h2>Recent Transactions</h2>
+                <div class="table-container" style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer</th>
+                                <th>Plan</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-orders-body">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Check if Admin
+        async function checkAdmin() {
+            const token = localStorage.getItem('token');
+            if(!token) window.location.href = 'login.html';
+
+            // Fetch Admin Data
+            const res = await fetch('/api/admin/orders', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if(res.status === 403) {
+                alert("Nice try! You are not an admin.");
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            const orders = await res.json();
+            renderAdmin(orders);
+        }
+
+        function renderAdmin(orders) {
+            // Calculate Stats
+            const total = orders.reduce((acc, order) => acc + order.total, 0);
+            document.getElementById('total-revenue').innerText = `$${total.toLocaleString()}`;
+            document.getElementById('total-orders').innerText = orders.length;
+
+            // Render Table
+            const tbody = document.getElementById('admin-orders-body');
+            tbody.innerHTML = orders.map(order => `
+                <tr>
+                    <td style="font-family: monospace; color: var(--text-muted);">${order._id.substring(0,8)}...</td>
+                    <td>${order.userId ? order.userId.email : 'Guest'}</td>
+                    <td>${order.items.map(i => i.title).join(', ')}</td>
+                    <td style="color: var(--accent);">$${order.total}</td>
+                    <td><span style="padding: 4px 8px; background: rgba(0,255,100,0.1); color: #00ff88; border-radius: 4px;">${order.status}</span></td>
+                    <td>${new Date(order.createdAt).toLocaleDateString()}</td>
+                </tr>
+            `).join('');
+        }
+
+        checkAdmin();
+    </script>
+</body>
+</html>

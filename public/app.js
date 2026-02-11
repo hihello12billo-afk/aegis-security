@@ -79,7 +79,7 @@ async function checkout() {
         return;
     }
 
-    const stripe = Stripe('pk_test_YOUR_PUBLIC_KEY_HERE'); // Replace with your Test Public Key
+    const stripe = Stripe('pk_test_51SyqARISGGHqTVJmgMMAcLkyokMP1B6K0MwnrsqQ9NO1S5B2o9jLpZylStJsH9rY6KwPzXn6EsPyrFAiCVevpS8Q00nWfWfqLK'); // Replace with your Test Public Key
 
     const res = await fetch(`${API_URL}/create-checkout-session`, {
         method: 'POST',
